@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -14,6 +14,7 @@
     <ProjectReference Include="..\FarmControl.Application\FarmControl.Application.csproj" />
     <ProjectReference Include="..\FarmControl.Communication\FarmControl.Communication.csproj" />
     <ProjectReference Include="..\FarmControl.Exceptions\FarmControl.Exceptions.csproj" />
+    <ProjectReference Include="..\FarmControl.Infrastructure\FarmControl.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

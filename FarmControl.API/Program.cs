@@ -1,3 +1,7 @@
+using FarmControl.Domain.Extension;
+using FarmControl.Infrastructure;
+using FarmControl.Infrastructure.Migrations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddRepository(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,4 +27,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+UpdateDataBase();
+
 app.Run();
+
+void UpdateDataBase()
+{
+    var connection = builder.Configuration.GetConnection();
+    var databaseName = builder.Configuration.GetNameDatabase();
+
+    Database.CreateDatabase(connection, databaseName);
+
+    app.MigrateDatabase();
+}
