@@ -1,6 +1,6 @@
 ﻿using FluentMigrator.Builders.Create.Table;
 
-namespace FarmControl.Infrastructure;
+namespace FarmControl.Infrastructure.Migrations.Versions;
 public static class BaseVersion
 {
     public static ICreateTableColumnOptionOrWithColumnSyntax InsertDefaultColumn(ICreateTableWithColumnOrSchemaOrDescriptionSyntax table)

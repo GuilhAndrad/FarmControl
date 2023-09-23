@@ -1,6 +1,6 @@
 ﻿using FarmControl.Domain.Extension;
 using FarmControl.Domain.Repositories;
-using FarmControl.Domain.Repositories.Farm;
+using FarmControl.Domain.Repositories.User;
 using FarmControl.Infrastructure.AccessRepositories;
 using FarmControl.Infrastructure.Repository;
 using FluentMigrator.Runner;
@@ -12,7 +12,7 @@ using System.Reflection;
 namespace FarmControl.Infrastructure;
 public static class Bootstrapper
 {
-    public static void AddRepository(this IServiceCollection services, IConfiguration configurationManager)
+    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configurationManager)
     {
         AddFluentMifrator(services, configurationManager);
         AddContext(services, configurationManager);
@@ -38,7 +38,9 @@ public static class Bootstrapper
 
     public static void AddRepositorios(IServiceCollection services)
     {
-        services.AddScoped<IFazendaWriteOnlyRepository, FazendaRepository>();
+        services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
+        services.AddScoped<IUserReadOnlyRepository, UserRepository>();
+        services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
 
     }
     private static void AddFluentMifrator(IServiceCollection services, IConfiguration configurationManager)

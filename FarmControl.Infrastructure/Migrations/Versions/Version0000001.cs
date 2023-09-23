@@ -1,23 +1,25 @@
-﻿using FluentMigrator;
+﻿using FarmControl.Infrastructure.Migrations;
+using FarmControl.Infrastructure.Migrations.Versions;
+using FluentMigrator;
 
-namespace FarmControl.Infrastructure.Migrations.Versions;
-
-[Migration((long)NumberOfVersions.CriarTabelaFazenda, "Cria a tabela Fazenda")]
-public class Version0000001 : Migration
+namespace MeuLivroDeReceitas.Infrastructure.Versions
 {
-    public override void Down()
+    [Migration((long)NumberOfVersions.CriarTabelaUser, "Cria tabela a User")]
+    public class Version0000001 : Migration
     {
+        public override void Down()
+        {
+        }
 
-    }
+        public override void Up()
+        {
+            var table = BaseVersion.InsertDefaultColumn(Create.Table("Users"));
 
-    public override void Up()
-    {
-        var table = BaseVersion.InsertDefaultColumn(Create.Table("Fazendas"));
-
-        table
-            .WithColumn("Nome").AsString(255).NotNullable()
-            .WithColumn("Localizacao").AsString(255).NotNullable()
-            .WithColumn("Descricao").AsString(500).Nullable()
-            .WithColumn("EstoqueGado").AsInt32().NotNullable().WithDefaultValue(0);
+            table
+                .WithColumn("Name").AsString(100).NotNullable()
+                .WithColumn("Email").AsString(100).NotNullable()
+                .WithColumn("Password").AsString(2000).NotNullable()
+                .WithColumn("Phone").AsString(14).NotNullable();
+        }
     }
 }
